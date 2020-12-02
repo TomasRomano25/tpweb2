@@ -3,57 +3,59 @@ require_once 'app/Controllers/userController.php';
 require_once('libs/Smarty.class.php');
 
 class categoriasView{
-   
+    private $newsmarty;
 
+    function __construct()
+    {   
+       
+       $this->newsmarty = new Smarty();
+ 
+    }
     function showAllCategoriasPrint($cateogrias)
     {
-        $smarty = new Smarty();
+       
+        $this->newsmarty->assign("categorias", $cateogrias);
 
-        $smarty->assign("categorias", $cateogrias);
-
-        $smarty->display("templates/categorias.tpl");
+        $this->newsmarty->display("templates/categorias.tpl");
 
     }
     function showAllCategoriasPrintInner($categorias)
     {
         
         $smarty = new Smarty();
-        $smarty->assign("categorias", $categorias);
-        $smarty->display("templates/categoriasinner.tpl");
+        $this->newsmarty->assign("categorias", $categorias);
+        $this->newsmarty->display("templates/categoriasinner.tpl");
 
     }    
     function PickCategories($categorias)
     {
         
         $smarty = new Smarty();
-        $smarty->assign("categorias", $categorias);
-        $smarty->display("templates/elegircategoria.tpl");
+        $this->newsmarty->assign("categorias", $categorias);
+        $this->newsmarty->display("templates/elegircategoria.tpl");
     }
     function ingresarCategoriaPagina(){
-        $UserController = new UserController;
-        $UserController->CheckLogged();
+       
         $smarty = new Smarty();
-        $smarty->display("templates/IngresarCategoria.tpl");
+        $this->newsmarty->display("templates/IngresarCategoria.tpl");
     
      }
     
      function showCategoriasEdit($categorias)
 
      {
-        $UserController = new UserController;
-        $UserController->CheckLogged();
+        
          $smarty = new Smarty();
-         $smarty->assign("categorias", $categorias);
-         $smarty->display("templates/editcategoria.tpl");
+         $this->newsmarty->assign("categorias", $categorias);
+         $this->newsmarty->display("templates/editcategoria.tpl");
      }  
 
      function eliminaryeditarcategorias($categorias)
      {
-        $UserController = new UserController;
-        $UserController->CheckLogged();
+    
          $smarty = new Smarty();
-         $smarty->assign("categorias", $categorias);
-         $smarty->display("templates/paneladmineditor.tpl");
+         $this->newsmarty->assign("categorias", $categorias);
+         $this->newsmarty->display("templates/paneladmineditor.tpl");
      }  
 
 

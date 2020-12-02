@@ -1,9 +1,17 @@
 <?php
 require_once 'app/Views/serviciosView.php';
 require_once 'app/Controllers/serviciosController.php';
+require_once 'app/Helpers/db.helper.php';
 
 class ServiciosModel
-{  
+{
+    private $dbHelper;
+    private $db;
+    function __construct()
+    {
+        $this->dbHelper = new dbHelper;
+        $this->db = $this->dbHelper->connect();
+    }
 
     //se conecta a la base de datos
     private function connect()
@@ -15,50 +23,103 @@ class ServiciosModel
     //obtiene los servicios de la base de datos
     function getServicios()
     {
-       
-        $db = $this->connect();
-        $query = $db->prepare('SELECT * FROM servicios JOIN categorias ON servicios.categorias_id = categorias.id_categorias');
+        $query = $this->db->prepare('SELECT * FROM servicios
+         JOIN categorias ON servicios.categorias_id = categorias.id_categorias');
         $query->execute();
         $servicios = $query->fetchall(PDO::FETCH_OBJ);
         return $servicios;
     }
     //obtiene los nombres de las categorias de los servicios segun el id que le corresponda
- 
-    //obtiene los servicios de marketing
-    function getServiciosMarketing()
-    {
-        $db =  $this->connect();
-        $query = $db->prepare('SELECT * FROM servicios WHERE Area = ?');
-        $query->execute(['Marketing']);
-        $servicios = $query->fetchall(PDO::FETCH_OBJ);
-        return $servicios;
-    }
+
+    //obtiene los servicios segunCategoria
     function getServicio($id)
     {
-        $db =  $this->connect();
-        $query = $db->prepare('SELECT * FROM servicios JOIN categorias ON servicios.categorias_id = categorias.id_categorias WHERE categorias_id = ?');
+
+        $query = $this->db->prepare('SELECT * FROM servicios
+         JOIN categorias ON servicios.categorias_id = categorias.id_categorias WHERE categorias_id = ?');
         $query->execute([$id]);
         $servicios = $query->fetchall(PDO::FETCH_OBJ);
         return $servicios;
     }
-    //inserta los servicios en la base de datos
-    function instertServicio($servicios, $disponibilidad, $precio, $categoria)
+
+    function getServicioPrecioYDisponibilidad($precio,$precio2, $disponible)
     {
-       
-        $db = $this->connect();
-        $query = $db->prepare('INSERT INTO servicios (Servicios, Disponible, Precio, categorias_id) VALUES (?,?,?,?)');
-        $query->execute([$servicios, $disponibilidad, $precio, $categoria]);
-        //obtengo el id de la tarea nueva
-        return $db->lastInsertId();
+
+        $query = $this->db->prepare("SELECT * FROM servicios
+         JOIN categorias ON servicios.categorias_id = categorias.id_categorias
+          WHERE servicios.precio >= $precio and servicios.Precio <= $precio2 
+          and servicios.Disponible = '$disponible'");
+        $query->execute();
+        $servicios = $query->fetchall(PDO::FETCH_OBJ);
+        return $servicios;
     }
 
 
+    function getServicioCompleto($id)
+    {
+        $query = $this->db->prepare('SELECT * FROM comentarios
+        JOIN servicios ON comentarios.id_coments = servicios.id
+        JOIN categorias ON servicios.categorias_id = categorias.id_categorias WHERE id = ?');
+        $query->execute([$id]);
+        $servicios = $query->fetchall(PDO::FETCH_OBJ);
+        return $servicios;
+    }
+    
+
+    function getServiciosbyID($id)
+    {
+        $query = $this->db->prepare('SELECT * FROM servicios 
+        JOIN categorias ON servicios.categorias_id = categorias.id_categorias WHERE id = ?');
+        $query->execute([$id]);
+        $servicios = $query->fetchall(PDO::FETCH_OBJ);
+        return $servicios;
+    }
 
 
+/*function getCommentarios(){
+
+    $query = $this->db->prepare('SELECT * FROM comentarios');
+    $query->execute();
+    $comentarios = $query->fetchall(PDO::FETCH_OBJ);
+    return $comentarios;
+
+
+}*/
+
+/*function insertComentario($comentario, $idproduct, $valoracion)
+{
+    $query = $this->db->prepare('INSERT INTO comentarios (comentario, id_coments, valoracion) VALUES (?,?,?)'); //cambiar nombre id_coments
+    $query->execute([$comentario, $idproduct,$valoracion]);
+    //obtengo el id de la tarea nueva
+    return $this->db->lastInsertId();
+}*/
+
+
+    //obtener servicio por id
+
+    function getServicioPorId($id)
+    {
+
+        $query = $this->db->prepare('SELECT * FROM servicios WHERE id = ?');
+        $query->execute([$id]);
+        $servicios = $query->fetchall(PDO::FETCH_OBJ);
+        return $servicios;
+    }
+
+    //inserta los servicios en la base de datos
+    function instertServicio($servicios, $disponibilidad, $precio, $categoria)
+    {
+
+
+        $query = $this->db->prepare('INSERT INTO servicios (Servicios, Disponible, Precio, categorias_id) VALUES (?,?,?,?)');
+        $query->execute([$servicios, $disponibilidad, $precio, $categoria]);
+        //obtengo el id de la tarea nueva
+        return $this->db->lastInsertId();
+    }
 
     function removeTask($id)
     {
-       
+
         $db =  $this->connect();
         $query = $db->prepare(
             " DELETE FROM servicios WHERE id=? "
@@ -68,31 +129,11 @@ class ServiciosModel
     }
     function getServiciosEdit($id)
     {
-      
+
         $db = $this->connect();
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = $db->prepare('SELECT * FROM servicios JOIN categorias ON servicios.categorias_id = categorias.id_categorias  WHERE id=?');
         $query->execute([$id]);
-        $servicios = $query->fetchall(PDO::FETCH_OBJ);
-        return $servicios;
-    }
-    function getServiciosDesarrollo()
-    {
-        
-        $db = $this->connect();
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $query = $db->prepare('SELECT * FROM servicios WHERE Area = ?');
-        $query->execute(['Desarrollo Web']);
-        $servicios = $query->fetchall(PDO::FETCH_OBJ);
-        return $servicios;
-    }
-    function getServiciosConsultoria()
-    {
-        
-        $db = $this->connect();
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $query = $db->prepare('SELECT * FROM servicios WHERE Area = ?');
-        $query->execute(['Consultoria']);
         $servicios = $query->fetchall(PDO::FETCH_OBJ);
         return $servicios;
     }
@@ -103,7 +144,6 @@ class ServiciosModel
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $query = $db->prepare("UPDATE servicios SET `Servicios` = '$servicios', `Precio` = '$precio', `categorias_id` = '$Area', `Disponible` = '$disponibilidad'  WHERE id='$id';");
         $query->execute([$servicios, $disponibilidad, $precio, $Area]);
-        //obtengo el id de la tarea nueva 
         return $db->lastInsertId();
     }
 }

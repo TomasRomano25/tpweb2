@@ -1,0 +1,64 @@
+<?php
+/* Smarty version 3.1.34-dev-7, created on 2020-12-01 19:24:24
+  from 'C:\xampp\htdocs\Inicio\templates\specificproduct.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.34-dev-7',
+  'unifunc' => 'content_5fc68a58a8a1d7_34999376',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'c8476bd11d7baac90135d7573f7728dec9229426' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\Inicio\\templates\\specificproduct.tpl',
+      1 => 1606847063,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:templates/header.tpl' => 1,
+    'file:templates/comentarios.tpl' => 1,
+    'file:templates/footercopia.tpl' => 1,
+  ),
+),false)) {
+function content_5fc68a58a8a1d7_34999376 (Smarty_Internal_Template $_smarty_tpl) {
+?>   <?php $_smarty_tpl->_subTemplateRender("file:templates/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+    
+    <?php echo $_smarty_tpl->tpl_vars['servicios']->value;?>
+
+    <?php echo $_smarty_tpl->tpl_vars['servicios']->value->{$_smarty_tpl->tpl_vars['Servicios']->value};?>
+
+    
+        
+    
+
+    </table>
+
+
+    <div id='detallesdelproducto'>
+       74
+    </div>
+   <?php $_smarty_tpl->_subTemplateRender("file:templates/comentarios.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+        <form >
+
+
+            <h2>deja un comentario:</h2>
+            <input type="text" id="comentario-enviado" maxlength="350" value="" />
+            <input type="text" id="estrellitas" maxlength="350" value="" />
+         
+            
+            <input type="submit"  id="cargar-comentario" class='btn btn-danger'>
+
+
+        </form>
+            
+        <?php echo '<script'; ?>
+ src="js/servicios.js"><?php echo '</script'; ?>
+>
+        <?php $_smarty_tpl->_subTemplateRender("file:templates/footercopia.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+}
+}

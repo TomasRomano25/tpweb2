@@ -4,4 +4,5 @@
 <th scope="col"> Precio </th>
 <th scope="col"> eliminar </th>
 <th scope="col"> editar </th>
+
 </tr>

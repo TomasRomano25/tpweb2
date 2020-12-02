@@ -14,7 +14,6 @@
                     <a name="servicios" class="navbar-brand "  style="color: white;" href="/Inicio/servicios"> Inicio</a>
                     <a class="navbar-brand "  style="color: white;"  href="/Inicio/login"> Conectarse </a>
                     <a class="navbar-brand"  style="color: white;" href="/Inicio/paneladministrador"> Administrar Cuenta</a>
-                    <a class="navbar-brand"  style="color: white;"  href="/Inicio/administrador.php">Contacto</a></div>
         </nav>
     </header>
     <table class="table container-md">

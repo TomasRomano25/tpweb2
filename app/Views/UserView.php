@@ -5,40 +5,45 @@ require_once('libs/Smarty.class.php');
 
 class UserView {
    private $categoriasModel;
-   private $categoriasView;
+   
        function __construct()
    {
        $this->categoriasModel = new categoriasModel;
-       $this->categoriasView = new categoriasView;
+       
    }
 
 
  function LoginPage(){
-   
     $smarty = new Smarty();
-    $smarty->display("templates/login.tpl");
-
-
+    $smarty->display("templates/loginpg.tpl");
  }
 
  function AdminPanel(){
-   $UserController = new UserController;
-   $UserController->CheckLogged();
    $smarty = new Smarty();
    $smarty->display("templates/paneladministrador.tpl");
  }
 
-
- function ingresarServicio(){
-  $UserController = new UserController;
-   $UserController->CheckLogged();
-    $smarty = new Smarty();
-    $categorias = $this->categoriasModel->getCategorias();
-    $smarty->assign("categorias", $categorias);
-    $smarty->display("templates/ingresarservicio.tpl");
- }
+ function registrationpageview(){
+  $smarty = new Smarty();
+  $smarty->display("templates/registeruser.tpl");
+}
  function ErrorPageLogin(){
    $smarty = new Smarty();
    $smarty->display("templates/error.tpl");
  }
+
+ function PrintUsers($users)
+  {
+    $smarty = new Smarty();
+    $smarty->assign("users", $users);
+    $smarty->display("templates/editordeusuarios.tpl");
+  }
+  function PrintUsersEditor($users)
+  {
+    $smarty = new Smarty();
+    $smarty->assign("users", $users);
+    $smarty->display("templates/editorpermisos.tpl");
+  }
+
+
 }

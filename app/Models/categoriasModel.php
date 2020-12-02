@@ -28,7 +28,6 @@ function removerCategoria($id)
     $db =  $this->connect();
     $query = $db->prepare(" DELETE FROM categorias WHERE id_categorias=? ");
     $query->execute(array($id));
-
 }
 function getCategorias()
 {
@@ -54,7 +53,7 @@ function instertcategoria($categorias)
     {
         $db = $this->connect();
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $query = $db->prepare("UPDATE categorias SET `c_nombre` = '$nombre' WHERE id_categorias='$id';");
+        $query = $db->prepare("UPDATE categorias SET `c_nombre` = '$nombre' WHERE id_categorias='$id'");
         $query->execute([$nombre]);
         //obtengo el id de la tarea nueva 
         return $db->lastInsertId();

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.34-dev-7, created on 2020-10-14 19:27:38
+/* Smarty version 3.1.34-dev-7, created on 2020-12-01 16:06:42
   from 'C:\xampp\htdocs\Inicio\templates\header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.34-dev-7',
-  'unifunc' => 'content_5f87350a852f01_85102326',
+  'unifunc' => 'content_5fc65c02747b55_96966482',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0e8d7f7a49d5b6427cf3ebcb071a35ef29e54fc8' => 
     array (
       0 => 'C:\\xampp\\htdocs\\Inicio\\templates\\header.tpl',
-      1 => 1602696456,
+      1 => 1606835198,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5f87350a852f01_85102326 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5fc65c02747b55_96966482 (Smarty_Internal_Template $_smarty_tpl) {
 ?> <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +30,7 @@ function content_5f87350a852f01_85102326 (Smarty_Internal_Template $_smarty_tpl)
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/estrellitas.css">
 
 </head>
 <body>

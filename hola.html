@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/estrellitas.css">
+</head>
+
+<body>
+
+    {include file="templates/header.tpl"}
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <div>
+        {foreach from=$servicios item=servicio }
+        <tr>
+            <td scope="col container-md"> {$servicio->Servicios} </td>
+            <td scope="col container-md"> {$servicio->Disponible} </td>
+            <td scope="col container-md"> {$servicio->Precio}</td>
+            <td scope="col container-md"> {$servicio->c_nombre}</td>
+
+        </tr>
+        {/foreach}
+    </div>
+
+    </table>
+
+
+    <div id='detallesdelproducto'>
+        {$servicio->id}
+    </div>
+
+
+    <div class="container">
+
+        <h1 id="#titulo"> </h1>
+        <ul id="comentarios-lista">
+
+        </ul>
+
+        <form id="cargar-comentario">
+
+
+            <h2>deja un comentario:</h2>
+            <input type="text" id="comentario-enviado" maxlength="350" value="" />
+            <p class="clasificacion">
+                <input id="radio1" type="radio" name="estrellas" value="5">
+
+                <label for="radio1">★</label>
+
+                <input id="radio2" type="radio" name="estrellas" value="4">
+
+                <label for="radio2">★</label>
+
+                <input id="radio3" type="radio" name="estrellas" value="3">
+
+                <label for="radio3">★</label>
+
+                <input id="radio4" type="radio" name="estrellas" value="2">
+
+                <label for="radio4">★</label>
+
+                <input id="radio5" type="radio" name="estrellas" value="1">
+
+                <label for="radio5">★</label>
+            </p>
+            <button type='submit' class='btn btn-danger'>Comentar!</button>
+
+
+        </form>
+
+
+
+        <form> <input type="text" value="${comentario.id_comentarios}"> <input type='submit' value="borrar" id='eliminarcomentario' class='btn btn-danger'></form>
+
+        <div> <input type='submit' value="borrar" id='eliminarcomentario' class='btn btn-danger'></div>
+        <div class="col-xs-12 col-sm-4 col-md-3 d-lg-none" id="idcomentario">${comentario.id_comentarios}</div>
+        </li>
+
+
+        <input type="checkbox" name="disponible" >
+        <label for="disponible"> ServiciosDisponibles</label><br>
+        <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+        <label for="vehicle2"> I have a car</label><br>
+
+
+
+
+
+
+        <script src="js/servicios.js"></script>
+        {include file="templates/footer.tpl"}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script src="js/servicios.js"></script>
+        {include file="templates/footer.tpl"}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

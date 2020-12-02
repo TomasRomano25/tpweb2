@@ -1,8 +1,9 @@
 
-{include file="templates/header.tpl"}
-{include file="templates/barradeserviciosedit.tpl"}
+{include file="templates/headereditar.tpl"}
+
+
 {foreach from=$servicios item=servicio}
-<form action="/inicio/modificarservicio/$servicio->id/" method="POST">
+<form action="modificarservicio" method="POST">
        
     <tr>
 
@@ -24,7 +25,7 @@
    <option value="{$categoria->id_categorias}">{$categoria->c_nombre}</option>
  {/foreach}
 </select>
-        <td><button type='submit' class='btn btn-danger'name ='/inicio/modificarservicio'>Modificar</button></td>
+        <td><button type='submit' class='btn btn-danger' name='modificarservicio'>Modificar</button></td>
     </tr>
 </form>
 {/foreach}</td>
