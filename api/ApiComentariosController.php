@@ -36,8 +36,12 @@ class ApiComentariosController extends apiController
 
     public function insertComments($params = null)
     {
+
+        
         $body = $this->getData();
         $this->comentariosModel->insertComentario($body->comentario, $body->id_coments, $body->valoracion);
+      
+       
     }
 
 

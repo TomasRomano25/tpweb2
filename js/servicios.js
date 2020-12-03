@@ -1,18 +1,13 @@
 "use strict"
 document.addEventListener('DOMContentLoaded', () => {
 
-    getComments();
-    if (userlogeado != "") {
-        console.log(userlogeado);
-        console.log(productid);
-    }
-    else {
-        console.log(productid);
-    }
+getComments();
 
     document.querySelector('#cargar-comentario').addEventListener('click', e => {
-        
+        e.preventDefault();
         addComments();
+        getComments();
+
     });
 })
 
@@ -21,8 +16,7 @@ let productid = product.innerHTML;
 let user = document.querySelector('#usuariologeado');
 let userlogeado = user.innerHTML;
 
-//let idcomentario = document.querySelector('#idcomentario').value;
-//let idpruebacoment = idcomentario.innerHTML;
+
 
 function getComments() {
 
@@ -67,8 +61,9 @@ function rendercomments(comentarios) {
     const container = document.querySelector('#comentarios-lista');
 
     //const estrellitas = document.querySelector('#estrellitas');
-
+    container.innerHTML = "";
     for (let comentario of comentarios) {
+
         if (comentario.valoracion == 1) {
 
             container.innerHTML += `<li > ${comentario.comentario} ★  <div><a href="vercomentario/${comentario.id_comentarios}" class='btn btn-danger'>Eliminar</a></div></li >`;
@@ -88,7 +83,8 @@ function rendercomments(comentarios) {
         else if (comentario.valoracion == 0) {
             container.innerHTML += `<li id="${comentario.id_comentarios}"> ${comentario.comentario}<div><a href="vercomentario/${comentario.id_comentarios}" class='btn btn-danger'>Eliminar</a></div> </li>`;
         }
-        
+
+    
 
     }
 
