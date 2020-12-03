@@ -49,9 +49,7 @@ function addComments() {
             .then(comentarios => console.log(comentarios))
             .catch(error => console.log(error));
     }
-    else {
-        alert("Necesitas estar Logeado para dejar un comentario");
-    }
+    
 }
 
 
